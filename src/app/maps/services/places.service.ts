@@ -15,6 +15,7 @@ export class PlacesService {
     this.getUserLocation();
   }
 
+  //* Se obtiene la geolocalización del usuario
   public async getUserLocation(): Promise<[number, number]> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
