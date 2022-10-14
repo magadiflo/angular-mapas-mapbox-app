@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Map, Popup, Marker } from 'mapbox-gl';
 
-import { PlacesService } from '../../services';
+import { PlacesService, MapService } from '../../services';
 
 
 @Component({
@@ -14,7 +14,9 @@ export class MapViewComponent implements AfterViewInit {
 
   @ViewChild('mapDiv') mapDivElement!: ElementRef;
 
-  constructor(private placeService: PlacesService) { }
+  constructor(
+    private placeService: PlacesService,
+    private mapService: MapService) { }
 
   ngAfterViewInit(): void {
     if (!this.placeService.userLocation) throw new Error("No hay placesServices.userLocation");
@@ -36,6 +38,9 @@ export class MapViewComponent implements AfterViewInit {
       .setLngLat(this.placeService.userLocation)
       .setPopup(popup)
       .addTo(map);
+
+    //*De esta manera tendremos acceso global al mapa
+    this.mapService.setMap(map);
   }
 
 }
