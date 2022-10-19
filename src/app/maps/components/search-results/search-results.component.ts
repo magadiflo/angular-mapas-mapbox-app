@@ -31,4 +31,12 @@ export class SearchResultsComponent {
     this.mapService.flyTo([lng, lat]);
   }
 
+  getDirections(place: Feature) {
+    if (!this.placesServices.userLocation) throw new Error('No hay userLocation');
+
+    const start = this.placesServices.userLocation;
+    const end = place.center as [number, number];
+    this.mapService.getRouteBetweenPoints(start, end);
+  }
+
 }

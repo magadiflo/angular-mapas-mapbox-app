@@ -7,7 +7,7 @@
         class="list-group-item list-group-item-action pointer" [class.active]="selectedId == place.id">
         <h6>{{ place.text_es }}</h6>
         <p>{{ place.place_name }}</p>
-        <button type="button" class="btn btn-sm"
+        <button type="button" (click)="getDirections(place)" class="btn btn-sm"
             [ngClass]="selectedId == place.id ? 'btn-outline-light' : 'btn-outline-primary'">
             Direcciones
         </button>
